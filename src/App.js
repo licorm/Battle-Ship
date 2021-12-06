@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import LandingPage from './components/landing';
+import StartButton from './components/button';
+import BattleGrid from './components/grid';
+import { useEffect, useState } from 'react';
+
+//set constants for modes
+const START = 'START';
+const PLAY = 'PLAY';
 
 function App() {
+const [state, setState] = useState({
+  mode: START
+})
+
+const onClick = () => {
+  setState((prev) => ({ ...prev, mode: PLAY }));
+}
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {state.mode === START && 
+      <div>
+      <LandingPage></LandingPage>
+      <StartButton onClick={onClick}/>
+      </div>
+      }
+      {state.mode === PLAY &&
+      <div>
+        <BattleGrid />
+      </div>
+        }
+      
     </div>
   );
 }
