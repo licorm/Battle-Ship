@@ -1,6 +1,7 @@
 import LandingPage from './components/landing';
 import StartButton from './components/button';
 import BattleGrid from './components/grid';
+import BattleShip from './components/battleship';
 import { useEffect, useState } from 'react';
 import './App.css'
 
@@ -11,11 +12,11 @@ const PLAY = 'PLAY';
 const column = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
 const row = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-const carrier = 5;
-const battleship = 4;
-const cruiser = 3;
-const submarine = 3;
-const destroyer = 2;
+const Carrier = 5;
+const Battleship = 4;
+const Cruiser = 3;
+const Submarine = 3;
+const Destroyer = 2;
 
 function App() {
 const [state, setState] = useState({
@@ -23,7 +24,7 @@ const [state, setState] = useState({
   player1: true,
   selected: []
 })
-console.log('state', state)
+
 const grid = [];
   for (const letter of column) {
     for (const number of row) {
@@ -32,6 +33,7 @@ const grid = [];
     }
   }
 
+  
   const onSelect = (id) => {
     const selected = [...state.selected];
     selected.push(id)
@@ -63,12 +65,16 @@ const onClick = () => {
       <div className="grid-container">
         {fullGrid}
         </div>
+        <h1>Battle Ships</h1>
+        <BattleShip/>
       </div>
       <h1>Player 2</h1>
         <div className={state.player1 ? "not" : "yourturn"}>
         <div className="grid-container">
           {fullGrid}
           </div>
+        <h1>Battle Ships</h1>
+        <BattleShip/>
         </div>
       </div>
         }
