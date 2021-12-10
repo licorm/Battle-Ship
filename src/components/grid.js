@@ -1,58 +1,21 @@
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-
-
-const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
-
-function FormRow() {
-  return (
-    <React.Fragment>
-      <Grid item xs={2}>
-        <Item>Item1</Item>
-      </Grid>
-      <Grid item xs={2}>
-        <Item>Item2</Item>
-      </Grid>
-      <Grid item xs={2}>
-        <Item>Item3</Item>
-      </Grid>
-      <Grid item xs={2}>
-        <Item>Item4</Item>
-      </Grid>
-      <Grid item xs={2}>
-        <Item>Item5</Item>
-      </Grid>
-    </React.Fragment>
-  );
-}
+const column = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+const row = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 export default function BattleGrid(props) {
-  return (
-<Grid container spacing={1}>
-  <Grid container item spacing={1}>
-    <FormRow />
-  </Grid>
-  <Grid container item spacing={1}>
-    <FormRow />
-  </Grid>
-  <Grid container item spacing={1}>
-    <FormRow />
-  </Grid>
-  <Grid container item spacing={1}>
-    <FormRow />
-  </Grid>
-  <Grid container item spacing={1}>
-    <FormRow />
-  </Grid>
-</Grid>
+  const grid = [];
+  for (const letter of column) {
+    for (const number of row) {
+      const square = `${letter}${number}`;
+      grid.push(square);
+    }
+  }
 
+  const fullGrid = grid.map((square) => {
+    return (
+      <div>{square}</div>
+    )
+  })
+  return (
+    fullGrid
   )
 }
