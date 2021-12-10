@@ -2,15 +2,45 @@ import LandingPage from './components/landing';
 import StartButton from './components/button';
 import BattleGrid from './components/grid';
 import { useEffect, useState } from 'react';
+import './App.css'
 
 //set constants for modes
 const START = 'START';
 const PLAY = 'PLAY';
 
+const column = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+const row = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+const carrier = 5;
+const battleship = 4;
+const cruiser = 3;
+const submarine = 3;
+const destroyer = 2;
+
 function App() {
 const [state, setState] = useState({
-  mode: START
+  mode: START,
+  player1: true,
+  selected: false
 })
+console.log('state', state)
+const grid = [];
+  for (const letter of column) {
+    for (const number of row) {
+      const square = `${letter}${number}`;
+      grid.push(square);
+    }
+  }
+
+  // onSelect = () => {
+    
+  // }
+
+  const fullGrid = grid.map((square, index) => {
+    return (
+      <button key={index} className="grid-item" selected={state.selected}>{square}</button>
+    )
+  })
 
 const onClick = () => {
   setState((prev) => ({ ...prev, mode: PLAY }));
@@ -19,13 +49,24 @@ const onClick = () => {
     <div className="App">
       {state.mode === START && 
       <div>
-      <LandingPage></LandingPage>
-      <StartButton onClick={onClick}/>
+        <LandingPage></LandingPage>
+        <StartButton onClick={onClick}/>
       </div>
       }
       {state.mode === PLAY &&
       <div>
-        <BattleGrid />
+        <h1>Player 1</h1>
+      <div className={state.player1 ? "yourturn" : "not"}>
+        <BattleGrid 
+        fullGrid={fullGrid}
+        />
+      </div>
+      <h1>Player 2</h1>
+        <div className={state.player1 ? "not" : "yourturn"}>
+          <BattleGrid 
+            fullGrid={fullGrid}
+         />
+        </div>
       </div>
         }
       
