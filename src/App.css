@@ -41,3 +41,7 @@
   padding: 2em;
   background-color: red;
 }
+
+button {
+  height: 3em;
+}

@@ -21,7 +21,7 @@ function App() {
 const [state, setState] = useState({
   mode: START,
   player1: true,
-  selected: false
+  selected: []
 })
 console.log('state', state)
 const grid = [];
@@ -32,19 +32,22 @@ const grid = [];
     }
   }
 
-  // onSelect = () => {
-    
-  // }
+  const onSelect = (id) => {
+    const selected = [...state.selected];
+    selected.push(id)
+    setState((prev) => ({ ...prev, selected }));
+  }
 
   const fullGrid = grid.map((square, index) => {
     return (
-      <button key={index} className="grid-item" selected={state.selected}>{square}</button>
+      <BattleGrid key={index} id={square} className="grid-item" selected={state.selected} onSelect={onSelect}/>
     )
   })
 
 const onClick = () => {
   setState((prev) => ({ ...prev, mode: PLAY }));
 }
+
   return (
     <div className="App">
       {state.mode === START && 
@@ -57,15 +60,15 @@ const onClick = () => {
       <div>
         <h1>Player 1</h1>
       <div className={state.player1 ? "yourturn" : "not"}>
-        <BattleGrid 
-        fullGrid={fullGrid}
-        />
+      <div className="grid-container">
+        {fullGrid}
+        </div>
       </div>
       <h1>Player 2</h1>
         <div className={state.player1 ? "not" : "yourturn"}>
-          <BattleGrid 
-            fullGrid={fullGrid}
-         />
+        <div className="grid-container">
+          {fullGrid}
+          </div>
         </div>
       </div>
         }
