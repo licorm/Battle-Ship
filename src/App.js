@@ -86,6 +86,46 @@ const grid = [];
         }
         setState((prev) => ({ ...prev, battleShips }));
       }
+      if (state.selected.length === Destroyer) {
+        const oldBattleShips = [...state.battleShips];
+        const battleShips = [];
+        for (const battleship of oldBattleShips) {
+          if (battleship !== 'Destroyer') {
+             battleShips.push(battleship);
+          }
+        }
+        setState((prev) => ({ ...prev, battleShips }));
+      }
+      if (state.selected.length === Submarine) {
+        const oldBattleShips = [...state.battleShips];
+        const battleShips = [];
+        for (const battleship of oldBattleShips) {
+          if (battleship !== 'Submarine') {
+             battleShips.push(battleship);
+          }
+        }
+        setState((prev) => ({ ...prev, battleShips }));
+      }
+      if (state.selected.length === BattleShip) {
+        const oldBattleShips = [...state.battleShips];
+        const battleShips = [];
+        for (const battleship of oldBattleShips) {
+          if (battleship !== 'Battleship') {
+             battleShips.push(battleship);
+          }
+        }
+        setState((prev) => ({ ...prev, battleShips }));
+      }
+      if (state.selected.length === Cruiser) {
+        const oldBattleShips = [...state.battleShips];
+        const battleShips = [];
+        for (const battleship of oldBattleShips) {
+          if (battleship !== 'Cruiser') {
+             battleShips.push(battleship);
+          }
+        }
+        setState((prev) => ({ ...prev, battleShips }));
+      }
     }
     
   }
