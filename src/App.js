@@ -35,9 +35,26 @@ const grid = [];
 
   
   const onSelect = (id) => {
-    const selected = [...state.selected];
-    selected.push(id)
-    setState((prev) => ({ ...prev, selected }));
+    if (!state.selected.includes(id)) {
+      const selected = [...state.selected];
+      selected.push(id)
+      setState((prev) => ({ ...prev, selected }));
+    }
+    const selected = [];
+    if (state.selected.includes(id)) {
+      const newSelected = [...state.selected];
+      
+      console.log('id', id)
+      for (const ids of newSelected) {
+        console.log('ids', ids)
+        if (ids !== id) {
+          selected.push(ids);
+        }
+      }
+      
+      setState((prev) => ({ ...prev, selected }));
+    }
+    
   }
 
   const fullGrid = grid.map((square, index) => {
