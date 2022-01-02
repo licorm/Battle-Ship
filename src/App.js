@@ -23,7 +23,7 @@ const [state, setState] = useState({
   mode: START,
   player1: true,
   selected: [],
-  battleShips: []
+  battleShips: ['Carrier', 'Battleship', 'Cruiser', 'Submarine', 'Destroyer']
 })
 
 const grid = [];
@@ -75,14 +75,19 @@ const grid = [];
       selectedTwo.push(selected[1]);
     }
     if (checkArrayEqualElements(selectedOne) || checkArrayEqualElements(selectedTwo)) {
-      console.log('i am being triggered')
+      
       if (state.selected.length === Carrier) {
-        const battleShips = [...state.battleShips]
-        battleShips.push('Carrier');
+        const oldBattleShips = [...state.battleShips];
+        const battleShips = [];
+        for (const battleship of oldBattleShips) {
+          if (battleship !== 'Carrier') {
+             battleShips.push(battleship);
+          }
+        }
         setState((prev) => ({ ...prev, battleShips }));
       }
     }
-    console.log(state.battleShips)
+    
   }
 
   const fullGrid = grid.map((square, index) => {
@@ -113,6 +118,7 @@ const onClick = () => {
         <h1>Battle Ships</h1>
         <BattleShip
         onSelect={chooseShip}
+        battleShips={state.battleShips}
         />
       </div>
       <h1>Player 2</h1>
@@ -122,7 +128,8 @@ const onClick = () => {
           </div>
         <h1>Battle Ships</h1>
         <BattleShip
-        onSelect={chooseShip}
+          onSelect={chooseShip}
+          battleShips={state.battleShips}
         />
         </div>
       </div>
