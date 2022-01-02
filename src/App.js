@@ -67,7 +67,7 @@ const grid = [];
   return "Array is Undefined";
 }
 
-  const chooseShip = function() {
+  const chooseShip = function(shipID) {
     const selectedOne = [];
     const selectedTwo = [];
     for (const selected of state.selected) {
