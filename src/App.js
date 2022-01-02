@@ -67,13 +67,15 @@ const grid = [];
   return "Array is Undefined";
 }
 
-  const chooseShip = function(shipID) {
+  const chooseShip = function() {
+    
     const selectedOne = [];
     const selectedTwo = [];
     for (const selected of state.selected) {
       selectedOne.push(selected[0]);
       selectedTwo.push(selected[1]);
     }
+    
     if (checkArrayEqualElements(selectedOne) || checkArrayEqualElements(selectedTwo)) {
       
       if (state.selected.length === Carrier) {
@@ -127,7 +129,7 @@ const grid = [];
         setState((prev) => ({ ...prev, battleShips }));
       }
     }
-    
+    console.log(state.battleShips)
   }
 
   const fullGrid = grid.map((square, index) => {

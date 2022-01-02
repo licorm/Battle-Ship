@@ -6,7 +6,7 @@ export default function BattleGrid(props) {
   
   const [selected, setSelected] = useState(false);
   
-  //use effect is triggered when the selected IDs change, in order to toggle selected on drag  
+  //use effect is triggered when the selected IDs change, in order to toggle selected  
     useEffect(() => {
       
         if(!selected) {
