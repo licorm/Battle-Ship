@@ -57,6 +57,12 @@ const grid = [];
     
   }
 
+  const chooseShip = function() {
+    for (const selected of state.selected) {
+      console.log(selected)
+    }
+  }
+
   const fullGrid = grid.map((square, index) => {
     return (
       <BattleGrid key={index} id={square} className="grid-item" selected={state.selected} onSelect={onSelect}/>
@@ -83,7 +89,9 @@ const onClick = () => {
         {fullGrid}
         </div>
         <h1>Battle Ships</h1>
-        <BattleShip/>
+        <BattleShip
+        onSelect={chooseShip}
+        />
       </div>
       <h1>Player 2</h1>
         <div className={state.player1 ? "not" : "yourturn"}>
