@@ -142,7 +142,8 @@ const grid = [];
 
     if (state.battleShips.length === 1) {
       const player1 = !(state.player1);
-      setState((prev) => ({ ...prev, player1 }));
+      const battleShips = ['Carrier', 'Battleship', 'Cruiser', 'Submarine', 'Destroyer'];
+      setState((prev) => ({ ...prev, player1, battleShips }));
     }
     
   }
