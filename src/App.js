@@ -81,7 +81,7 @@ const grid = [];
     
     if (checkArrayEqualElements(selectedOne) || checkArrayEqualElements(selectedTwo)) {
       
-      if (state.selected.length === Carrier && shipID === 'Carrier') {
+      if (state.currentSelection.length === Carrier && shipID === 'Carrier') {
         const oldBattleShips = [...state.battleShips];
         const battleShips = [];
         for (const battleship of oldBattleShips) {
@@ -92,7 +92,7 @@ const grid = [];
         const currentSelection = [];
         setState((prev) => ({ ...prev, battleShips, currentSelection }));
       }
-      if (state.selected.length === Destroyer && shipID === 'Destroyer') {
+      if (state.currentSelection.length === Destroyer && shipID === 'Destroyer') {
         const oldBattleShips = [...state.battleShips];
         const battleShips = [];
         for (const battleship of oldBattleShips) {
@@ -101,9 +101,10 @@ const grid = [];
           }
         }
         const currentSelection = [];
-        setState((prev) => ({ ...prev, battleShips }));
+        setState((prev) => ({ ...prev, battleShips, currentSelection }));
       }
-      if (state.selected.length === Submarine && shipID === 'Submarine') {
+      if (state.currentSelection.length === Submarine && shipID === 'Submarine') {
+        console.log(state.currentSelection)
         const oldBattleShips = [...state.battleShips];
         const battleShips = [];
         for (const battleship of oldBattleShips) {
@@ -112,9 +113,9 @@ const grid = [];
           }
         }
         const currentSelection = [];
-        setState((prev) => ({ ...prev, battleShips }));
+        setState((prev) => ({ ...prev, battleShips, currentSelection }));
       }
-      if (state.selected.length === Battleship && shipID === 'Battle Ship') {
+      if (state.currentSelection.length === Battleship && shipID === 'Battle Ship') {
         const oldBattleShips = [...state.battleShips];
         const battleShips = [];
         for (const battleship of oldBattleShips) {
@@ -123,9 +124,9 @@ const grid = [];
           }
         }
         const currentSelection = [];
-        setState((prev) => ({ ...prev, battleShips }));
+        setState((prev) => ({ ...prev, battleShips, currentSelection }));
       }
-      if (state.selected.length === Cruiser && shipID === 'Cruiser') {
+      if (state.currentSelection.length === Cruiser && shipID === 'Cruiser') {
         const oldBattleShips = [...state.battleShips];
         const battleShips = [];
         for (const battleship of oldBattleShips) {
@@ -134,7 +135,7 @@ const grid = [];
           }
         }
         const currentSelection = [];
-        setState((prev) => ({ ...prev, battleShips }));
+        setState((prev) => ({ ...prev, battleShips, currentSelection }));
       }
     }
     
