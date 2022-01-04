@@ -27,6 +27,7 @@ const [state, setState] = useState({
   battleShips: ['Carrier', 'Battleship', 'Cruiser', 'Submarine', 'Destroyer']
 })
 
+
 const grid = [];
   for (const letter of column) {
     for (const number of row) {
@@ -137,6 +138,11 @@ const grid = [];
         const currentSelection = [];
         setState((prev) => ({ ...prev, battleShips, currentSelection }));
       }
+    }
+
+    if (state.battleShips.length === 1) {
+      const player1 = !(state.player1);
+      setState((prev) => ({ ...prev, player1 }));
     }
     
   }
