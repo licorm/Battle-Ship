@@ -23,6 +23,7 @@ const [state, setState] = useState({
   mode: START,
   player1: true,
   selected: [],
+  currentSelection: [],
   battleShips: ['Carrier', 'Battleship', 'Cruiser', 'Submarine', 'Destroyer']
 })
 
@@ -36,16 +37,18 @@ const grid = [];
 
   
   const onSelect = (id) => {
-    if (!state.selected.includes(id)) {
+    if (!state.selected.includes(id) && !state.currentSelection.includes(id)) {
       const selected = [...state.selected];
-      selected.push(id)
-      setState((prev) => ({ ...prev, selected }));
+      selected.push(id);
+      const currentSelection = [...state.currentSelection];
+      currentSelection.push(id);
+      setState((prev) => ({ ...prev, selected, currentSelection }));
     }
     const selected = [];
     if (state.selected.includes(id)) {
       const newSelected = [...state.selected];
       
-      console.log('id', id)
+      
       for (const ids of newSelected) {
         console.log('ids', ids)
         if (ids !== id) {
@@ -71,7 +74,7 @@ const grid = [];
     console.log(shipID)
     const selectedOne = [];
     const selectedTwo = [];
-    for (const selected of state.selected) {
+    for (const selected of state.currentSelection) {
       selectedOne.push(selected[0]);
       selectedTwo.push(selected[1]);
     }
@@ -86,7 +89,8 @@ const grid = [];
              battleShips.push(battleship);
           }
         }
-        setState((prev) => ({ ...prev, battleShips }));
+        const currentSelection = [];
+        setState((prev) => ({ ...prev, battleShips, currentSelection }));
       }
       if (state.selected.length === Destroyer && shipID === 'Destroyer') {
         const oldBattleShips = [...state.battleShips];
@@ -96,6 +100,7 @@ const grid = [];
              battleShips.push(battleship);
           }
         }
+        const currentSelection = [];
         setState((prev) => ({ ...prev, battleShips }));
       }
       if (state.selected.length === Submarine && shipID === 'Submarine') {
@@ -106,9 +111,10 @@ const grid = [];
              battleShips.push(battleship);
           }
         }
+        const currentSelection = [];
         setState((prev) => ({ ...prev, battleShips }));
       }
-      if (state.selected.length === BattleShip && shipID === 'Battle Ship') {
+      if (state.selected.length === Battleship && shipID === 'Battle Ship') {
         const oldBattleShips = [...state.battleShips];
         const battleShips = [];
         for (const battleship of oldBattleShips) {
@@ -116,6 +122,7 @@ const grid = [];
              battleShips.push(battleship);
           }
         }
+        const currentSelection = [];
         setState((prev) => ({ ...prev, battleShips }));
       }
       if (state.selected.length === Cruiser && shipID === 'Cruiser') {
@@ -126,6 +133,7 @@ const grid = [];
              battleShips.push(battleship);
           }
         }
+        const currentSelection = [];
         setState((prev) => ({ ...prev, battleShips }));
       }
     }
