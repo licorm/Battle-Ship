@@ -149,7 +149,7 @@ const grid = [];
   }
 
   const fullGrid = grid.map((square, index) => {
-    console.log(index)
+    
     return (
       <BattleGrid key={index} id={index} name={square} className="grid-item" selected={state.selected} onSelect={onSelect}/>
     )
